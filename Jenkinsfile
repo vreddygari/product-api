@@ -30,7 +30,7 @@ pipeline {
       }
       
       steps {
-            bat 'mvn -U -V -e -B -DskipTests -Pdev deploy  -DmuleDeploy -Dusername="%ANYPOINT_CREDENTIALS_USR%" -Dpassword="%ANYPOINT_CREDENTIALS_PSW%" -Dclient_id="%CLIENT_ID%" -Dclient_secret="%CLIENT_SECRET%"
+            bat 'mvn -U -V -e -B -DskipTests -Pdev deploy  -DmuleDeploy -Dusername="%ANYPOINT_CREDENTIALS_USR%" -Dpassword="%ANYPOINT_CREDENTIALS_PSW%" -Dclient_id="%CLIENT_ID%" -Dclient_secret="%CLIENT_SECRET%"'
       }
     }
     
