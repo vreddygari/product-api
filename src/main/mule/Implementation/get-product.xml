@@ -13,7 +13,7 @@ output application/json
 {
   productid: "1234",
   productname: "Vamshi mule",
-  productdesc: "complete mule course"
+  productdesc: "RVR complete mule"
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
