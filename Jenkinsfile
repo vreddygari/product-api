@@ -18,7 +18,7 @@ pipeline {
      stage('Deployment') {
       
       steps {
-            bat 'mvn -U -V -e -B -DskipTests deploy -Pdev -DmuleDeploy 
+            bat 'mvn -U -V -e -B -DskipTests -Pdev deploy  -DmuleDeploy 
       }
     }
     
