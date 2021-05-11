@@ -12,8 +12,8 @@ output application/json
 ---
 {
   productid: "1234",
-  productname: "Vamshi mule",
-  productdesc: "RVR complete mule indepth"
+  productname: "Vamshi mule course",
+  productdesc: "RVR complete mule 4.x indepth"
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
