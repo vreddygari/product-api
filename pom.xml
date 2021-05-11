@@ -77,8 +77,8 @@
 							
 							<env>test</env>
 							<api.id>16859865</api.id>
-							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<anypoint.platform.client_id>c1914a24d3e340b5bf121f22fee0dc28</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>E3c62eFa0312434aACD376f139DB4582</anypoint.platform.client_secret>
 							
 						</properties>
 					</cloudHubDeployment>
