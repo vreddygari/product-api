@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -17,77 +15,101 @@
 
 		<app.runtime>4.3.0-20210322</app.runtime>
 		<mule.maven.plugin.version>3.5.1</mule.maven.plugin.version>
+		<munit.version>2.3.4</munit.version>
 	</properties>
-	
+
 	<profiles>
-	<profile>
-	<id>dev</id>
-	<build>
-		<plugins>
-			
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<cloudHubDeployment>
-						
-						<applicationName>AES-dev-product-api</applicationName>
-						<environment>Dev</environment>
-						<region>us-east-1</region>
-						<workers>1</workers>
-						<workerType>MICRO</workerType>
-						
-						<properties>							
-							<env>dev</env>
-							<api.id>16859864</api.id>
-							<anypoint.platform.client_id>7dd4d3ad6b274f508eb7cd029a522148</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>e96FE521e8C44B56827470E0990dD3a1</anypoint.platform.client_secret>
-							
-						</properties>
-					</cloudHubDeployment>
-				</configuration>
+		<profile>
+			<id>dev</id>
+			<build>
+				<plugins>
 
-			</plugin>
-		</plugins>
-	</build>	
-	</profile>
-	
-	<profile>
-	<id>test</id>
-	<build>
-		<plugins>
-			
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<cloudHubDeployment>
-						
-						<applicationName>AES-test-product-api</applicationName>
-						<environment>Test</environment>
-						<region>us-east-1</region>
-						<workers>1</workers>
-						<workerType>MICRO</workerType>
-						
-						<properties>
-							
-							<env>test</env>
-							<api.id>16859865</api.id>
-							<anypoint.platform.client_id>c1914a24d3e340b5bf121f22fee0dc28</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>E3c62eFa0312434aACD376f139DB4582</anypoint.platform.client_secret>
-							
-						</properties>
-					</cloudHubDeployment>
-				</configuration>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
 
-			</plugin>
-		</plugins>
-	</build>	
-	</profile>
+								<applicationName>AES-dev-product-api</applicationName>
+								<environment>Dev</environment>
+								<region>us-east-1</region>
+								<workers>1</workers>
+								<workerType>MICRO</workerType>
+
+								<properties>
+									<env>dev</env>
+									<api.id>16859864</api.id>
+									<anypoint.platform.client_id>${client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${client_secret}</anypoint.platform.client_secret>
+
+								</properties>
+							</cloudHubDeployment>
+						</configuration>
+
+					</plugin>
+
+					<plugin>
+						<groupId>com.mulesoft.munit.tools</groupId>
+						<artifactId>munit-maven-plugin</artifactId>
+						<version>${munit.version}</version>
+						<executions>
+							<execution>
+								<id>test</id>
+								<phase>test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<coverage>
+								<runCoverage>true</runCoverage>
+								<formats>
+									<format>html</format>
+								</formats>
+							</coverage>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>test</id>
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
+
+								<applicationName>AES-test-product-api</applicationName>
+								<environment>Test</environment>
+								<region>us-east-1</region>
+								<workers>1</workers>
+								<workerType>MICRO</workerType>
+
+								<properties>
+
+									<env>test</env>
+									<api.id>16859865</api.id>
+									<anypoint.platform.client_id>${client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${client_secret}</anypoint.platform.client_secret>
+
+								</properties>
+							</cloudHubDeployment>
+						</configuration>
+
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<build>
@@ -106,8 +128,8 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.3.0</muleVersion>
-						<username>vreddygari-e</username>
-						<password>Reddy_123</password>
+						<username>${username}</username>
+						<password>${password}</password>
 						<objectStoreV2>true</objectStoreV2>
 						<properties>
 							<http.port>8081</http.port>
@@ -139,6 +161,26 @@
 			<artifactId>mule-apikit-module</artifactId>
 			<version>1.5.1</version>
 			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-runner</artifactId>
+			<version>2.3.4</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-tools</artifactId>
+			<version>2.3.4</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.weave</groupId>
+			<artifactId>assertions</artifactId>
+			<version>1.0.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
